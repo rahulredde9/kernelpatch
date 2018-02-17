@@ -1,0 +1,21 @@
+---
+- hosts: all
+  user: root 
+  vars:
+    kversion: 3.10.0-693.11.6.el7
+  tasks:
+  - name: upgrade kernel on all the hosts
+    yum:
+      name: kernel-{{ kversion }}
+      state: present
+    become: True
+  - name: upgrade kernal kernel tools
+    yum:
+      name: kernel-tools-{{ kversion }}
+      state: present
+    become: True
+  - name: upgrading kernel header
+    yum:
+      name: kernel-headers-{{ kversion }}
+      state: present
+    become: True
